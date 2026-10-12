@@ -3,33 +3,301 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nikos Yousef — ML Portfolio</title>
+<meta name="description" content="Nikos Yousef — Machine Learning Engineer specializing in deep learning, LLMs, and production ML.">
+<meta name="author" content="Nikos Yousef">
+<meta property="og:title" content="Nikos Yousef — Machine Learning Engineer">
+<meta property="og:description" content="Deep learning, LLMs, and production ML.">
+<meta property="og:type" content="website">
+<title>Nikos Yousef — Machine Learning Engineer</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-body { font-family: ui-monospace, monospace; max-width: 720px; margin: 3rem auto; padding: 0 1rem; color: #111; line-height: 1.6; }
-h1 { font-size: 1.5rem; }
-a { color: #06c; }
-.card { border: 1px solid #ddd; padding: 1rem; margin: 1rem 0; }
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #f6f7f9;
+    --fg: #1a1d21;
+    --fg-muted: #5b626d;
+    --border: #e3e6ea;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --maxw: 860px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1116;
+      --bg-alt: #151922;
+      --fg: #e6e9ee;
+      --fg-muted: #9aa3af;
+      --border: #262c37;
+      --accent: #60a5fa;
+      --accent-hover: #93c5fd;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-hover); text-decoration: underline; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 1.5rem; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav .brand { font-weight: 600; font-size: 0.95rem; }
+  .nav .links { display: flex; gap: 1.5rem; font-size: 0.9rem; }
+  .nav .links a { color: var(--fg-muted); }
+  .nav .links a:hover { color: var(--fg); text-decoration: none; }
+
+  .hero { padding: 5rem 0 4rem; }
+  .hero .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem; color: var(--accent);
+    letter-spacing: 0.02em; margin-bottom: 1rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 700; line-height: 1.15; margin: 0 0 1rem;
+    letter-spacing: -0.02em;
+  }
+  .hero p.sub {
+    font-size: 1.15rem; color: var(--fg-muted);
+    max-width: 600px; margin: 0 0 2rem;
+  }
+  .cta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.65rem 1.1rem; border-radius: 8px;
+    font-size: 0.92rem; font-weight: 500;
+    border: 1px solid var(--border);
+    transition: all 0.15s ease;
+  }
+  .btn:hover { text-decoration: none; border-color: var(--accent); color: var(--accent); }
+  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn.primary:hover { background: var(--accent-hover); color: #fff; }
+
+  section { padding: 3.5rem 0; border-top: 1px solid var(--border); }
+  section h2 {
+    font-size: 1.6rem; font-weight: 600; letter-spacing: -0.01em;
+    margin: 0 0 0.4rem;
+  }
+  section .lede { color: var(--fg-muted); margin: 0 0 2rem; max-width: 640px; }
+
+  .proj {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 1.25rem;
+    background: var(--bg-alt);
+    transition: border-color 0.15s ease;
+  }
+  .proj:hover { border-color: var(--accent); }
+  .proj .top {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap;
+  }
+  .proj h3 { font-size: 1.2rem; font-weight: 600; margin: 0; }
+  .proj .status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; padding: 0.2rem 0.6rem;
+    border-radius: 999px; border: 1px solid var(--border);
+    color: var(--fg-muted); white-space: nowrap;
+  }
+  .proj p { margin: 0 0 0.9rem; color: var(--fg-muted); font-size: 0.97rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; padding: 0.15rem 0.55rem;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 6px; color: var(--fg-muted);
+  }
+  .proj .links { display: flex; gap: 1rem; font-size: 0.9rem; flex-wrap: wrap; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
+
+  .skills ul { list-style: none; padding: 0; margin: 0; }
+  .skills li {
+    padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; gap: 1rem;
+    font-size: 0.95rem;
+  }
+  .skills li:last-child { border-bottom: none; }
+  .skills .cat { color: var(--fg-muted); }
+  .skills .items { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; text-align: right; }
+  @media (max-width: 640px) { .skills li { flex-direction: column; gap: 0.2rem; } .skills .items { text-align: left; } }
+
+  footer {
+    padding: 3rem 0 4rem; border-top: 1px solid var(--border);
+    color: var(--fg-muted); font-size: 0.9rem;
+  }
+  footer .row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
 </style>
 </head>
 <body>
-<h1>Nikos Yousef</h1>
-<p>Machine Learning Engineer — deep learning, LLMs, and production ML.</p>
-<p><a href="https://github.com/NikosBY">GitHub</a> · <a href="https://huggingface.co/NikosBY">Hugging Face</a></p>
 
-<div class="card">
-<h2>Road Object Detection</h2>
-<p>YOLOv8 fine-tuning, ONNX/TensorRT optimization, FastAPI + Gradio.</p>
-<p><a href="https://github.com/NikosBY/cv-object-detection">repo</a></p>
+<header>
+  <div class="wrap nav">
+    <div class="brand mono">nikos.yousef</div>
+    <nav class="links">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">Machine Learning Engineer</div>
+    <h1>Nikos Yousef</h1>
+    <p class="sub">
+      I build and ship machine learning systems — from deep learning models
+      to LLM-powered applications to production ML APIs. Based in Germany.
+    </p>
+    <div class="cta-row">
+      <a class="btn primary" href="#projects">View Projects</a>
+      <a class="btn" href="https://github.com/NikosBY">GitHub</a>
+      <a class="btn" href="https://huggingface.co/NikosBY">Hugging Face</a>
+    </div>
+  </div>
+
+  <section id="projects">
+    <h2>Selected Projects</h2>
+    <p class="lede">
+      Each project covers the full cycle: data, modeling, evaluation, and
+      deployment. Details, code, and live demos are linked below.
+    </p>
+
+    <article class="proj">
+      <div class="top">
+        <h3>Road Object Detection</h3>
+        <span class="status">in progress</span>
+      </div>
+      <p>
+        Object detection fine-tuned on real street imagery, optimized from
+        PyTorch through ONNX to TensorRT, and served behind a FastAPI +
+        Gradio interface. Focuses on the deployment and latency work that
+        matters in automotive and industrial settings.
+      </p>
+      <div class="tags">
+        <span class="tag">PyTorch</span>
+        <span class="tag">YOLOv8</span>
+        <span class="tag">ONNX</span>
+        <span class="tag">TensorRT</span>
+        <span class="tag">FastAPI</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/NikosBY/cv-object-detection">Code</a>
+        <a href="#" onclick="return false" style="cursor:not-allowed">Live demo (coming soon)</a>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div class="top">
+        <h3>German RAG Assistant</h3>
+        <span class="status">in progress</span>
+      </div>
+      <p>
+        A retrieval-augmented Q&A system over a German corpus with rigorous
+        evaluation — retrieval recall, faithfulness, and answer relevance —
+        plus a LoRA fine-tune of a small LLM. Deployed as a live chat app.
+      </p>
+      <div class="tags">
+        <span class="tag">RAG</span>
+        <span class="tag">LlamaIndex</span>
+        <span class="tag">Qdrant</span>
+        <span class="tag">LoRA</span>
+        <span class="tag">RAGAS</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/NikosBY/llm-rag">Code</a>
+        <a href="#" onclick="return false" style="cursor:not-allowed">Live demo (coming soon)</a>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div class="top">
+        <h3>Credit Risk Scoring</h3>
+        <span class="status">in progress</span>
+      </div>
+      <p>
+        A production-shaped tabular ML system: XGBoost against a calibrated
+        baseline, SHAP explainability, and fairness analysis, packaged as a
+        Dockerized FastAPI service with CI. The end-to-end "I can ship this"
+        story.
+      </p>
+      <div class="tags">
+        <span class="tag">XGBoost</span>
+        <span class="tag">scikit-learn</span>
+        <span class="tag">SHAP</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">Docker</span>
+      </div>
+      <div class="links">
+        <a href="https://github.com/NikosBY/tabular-credit-scoring">Code</a>
+        <a href="#" onclick="return false" style="cursor:not-allowed">Live demo (coming soon)</a>
+      </div>
+    </article>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <p class="lede">A reflection of the tooling used across the projects above.</p>
+    <div class="grid2 skills">
+      <div>
+        <ul>
+          <li><span class="cat">Languages</span><span class="items">Python</span></li>
+          <li><span class="cat">Deep Learning</span><span class="items">PyTorch</span></li>
+          <li><span class="cat">LLMs</span><span class="items">transformers · LoRA · RAG</span></li>
+          <li><span class="cat">Classical ML</span><span class="items">XGBoost · scikit-learn</span></li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li><span class="cat">Deployment</span><span class="items">FastAPI · Docker · ONNX · TensorRT</span></li>
+          <li><span class="cat">MLOps</span><span class="items">CI · testing · config management</span></li>
+          <li><span class="cat">Tooling</span><span class="items">uv · Hugging Face · Gradio</span></li>
+          <li><span class="cat">Hardware</span><span class="items">CUDA (RTX 3070)</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p class="lede">Open to opportunities in machine learning and AI engineering.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="mailto:nikosyousef1997@gmail.com">Email me</a>
+      <a class="btn" href="https://github.com/NikosBY">GitHub</a>
+      <a class="btn" href="https://huggingface.co/NikosBY">Hugging Face</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="row">
+      <span>&copy; 2026 Nikos Yousef</span>
+      <span class="mono">Built by hand · no frameworks</span>
+    </div>
+  </footer>
 </div>
-<div class="card">
-<h2>German RAG Assistant</h2>
-<p>Retrieval-augmented Q&A with evaluation, LoRA fine-tuning, Gradio chat.</p>
-<p><a href="https://github.com/NikosBY/llm-rag">repo</a></p>
-</div>
-<div class="card">
-<h2>Credit Risk Scoring</h2>
-<p>XGBoost, calibration, SHAP, fairness analysis, Dockerized FastAPI.</p>
-<p><a href="https://github.com/NikosBY/tabular-credit-scoring">repo</a></p>
-</div>
+
 </body>
 </html>

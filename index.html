@@ -60,7 +60,7 @@
     right: -135px; top: 32px; z-index: -1; background: var(--lime); opacity: 0.72;
     filter: blur(1px);
   }
-  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 250px; align-items: end; gap: 2.5rem; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
   h1 { margin: 0.8rem 0 1.2rem; max-width: 760px; font-size: clamp(3rem, 7vw, 5.7rem); line-height: 0.94; letter-spacing: -0.07em; }
   .intro { max-width: 650px; margin: 0; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.25rem); }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
@@ -72,10 +72,6 @@
   .button:hover { text-decoration: none; transform: translateY(-2px); }
   .button.dark { background: var(--ink); color: #fff; }
   .button.light { background: transparent; }
-  .machine-card { padding: 1.2rem; border: 1px solid var(--ink); border-radius: 12px; background: var(--card); box-shadow: 6px 6px 0 var(--ink); }
-  .machine-card h2 { margin: 0.4rem 0 0.8rem; font-size: 1.1rem; letter-spacing: -0.03em; }
-  .machine-card p { margin: 0; color: var(--muted); font-size: 0.86rem; }
-  .machine-spec { display: flex; justify-content: space-between; margin-top: 1rem; padding-top: 0.8rem; border-top: 1px solid var(--line); font: 0.71rem "DM Mono", monospace; }
 
   section { padding: 5rem 0; border-top: 1px solid var(--line); }
   .section-top { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 2.1rem; }
@@ -118,7 +114,6 @@
     .hero { padding: 4.2rem 0 3.5rem; }
     .hero-grid, .now, .contact { grid-template-columns: 1fr; }
     .hero::after { width: 260px; height: 260px; right: -130px; top: 14px; }
-    .machine-card { max-width: 280px; }
     .project { grid-template-columns: 42px 1fr; gap: 0.75rem; }
     .project-status { display: none; }
     .project-footer { grid-column: 1 / -1; align-items: flex-start; flex-direction: column; }
@@ -161,13 +156,6 @@
           <a class="button light" href="https://huggingface.co/NikosBY">Hugging Face ↗</a>
         </div>
       </div>
-      <aside class="machine-card" aria-label="Local ML workstation">
-        <div class="eyebrow">Build environment</div>
-        <h2>Local-first ML lab</h2>
-        <p>Every model is trained, measured, and packaged on my own machine before it is deployed.</p>
-        <div class="machine-spec"><span>GPU</span><span>RTX 3070 · 8 GB</span></div>
-        <div class="machine-spec"><span>Tooling</span><span>Python · CUDA · Docker</span></div>
-      </aside>
     </div>
   </div>
 
@@ -228,7 +216,7 @@
     </div>
     <div class="skills">
       <div class="skill-row"><span>Language</span><span>Python</span></div>
-      <div class="skill-row"><span>Deep learning</span><span>PyTorch · CUDA</span></div>
+      <div class="skill-row"><span>Deep learning</span><span>PyTorch</span></div>
       <div class="skill-row"><span>LLM systems</span><span>Transformers · RAG · LoRA</span></div>
       <div class="skill-row"><span>Classical ML</span><span>XGBoost · scikit-learn</span></div>
       <div class="skill-row"><span>Serving</span><span>FastAPI · Gradio</span></div>
